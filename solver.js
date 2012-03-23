@@ -17,7 +17,7 @@
     }
     isSubStringOf = function(sub, sup) {
       if (!sub.length) return true;
-      if (!sup.length) return false;
+      if (sup.length < sub.length) return false;
       if (sub[0] === sup[0]) return isSubStringOf(sub.slice(1), sup.slice(1));
       return isSubStringOf(sub, sup.slice(1));
     };

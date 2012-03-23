@@ -13,7 +13,7 @@
 
   isSubStringOf = (sub, sup) ->
     return true unless sub.length
-    return false unless sup.length
+    return false if sup.length < sub.length
     return isSubStringOf(sub.slice(1), sup.slice(1)) if sub[0] is sup[0]
     return isSubStringOf(sub, sup.slice(1))
 
