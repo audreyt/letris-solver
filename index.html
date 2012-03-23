@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Word Solver</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="dictionary.js"></script>
+<script src="solver.js"></script>
+<style>
+body {
+    background: #bbb;
+    background: -moz-linear-gradient(top, #bbb, #666);
+    background: -ms-linear-gradient(top, #bbb, #666);
+    background: -o-linear-gradient(top, #bbb, #666);
+    background: -webkit-linear-gradient(top, #bbb, #666);
+    background: linear-gradient(top, #bbb, #666);
+}
+body, input, td, th {
+    font-family: "Papyrus", serif;
+    font-size: 30px;
+}
+#submit {
+    font-size: 25px;
+}
+#letters, th {
+    text-transform: uppercase;
+}
+th {
+    text-align: left;
+    padding-right: 20px;
+}
+td, #maxlen {
+    text-align: right;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 25px;
+}
+</style>
+<script>
+$(function(){
+    var solve = Solver(Dictionary);
+    $('#solve').submit(function(){
+        var tiles = $('#letters').val();
+        tiles = tiles.toLowerCase().replace(/[^a-z]/g, '');
+        if (tiles.length == 0) return;
+        $('#letters').attr('disabled', true);
+        $('#results').empty();
+        setTimeout(function(){
+            var count = 0;
+            solve(tiles, Number($('#maxlen').val()) || 30, function(hit) {
+                count++;
+                $('#results').append(
+                    $('<tr />').append(
+                        $('<th />').text(hit)
+                    ).append(
+                        $('<td />').text(hit.length)
+                    )
+                );
+                return(count < 10);
+            });
+            $('#letters').attr('disabled', false);
+        }, 1);
+        return false;
+    });
+});
+</script>
+</head>
+<body>
+<center>
+<form id="solve" action="#">
+    <input id="letters" size="30">
+    <input id="submit" type="submit" value="Solve for max. length:">
+    <input id="maxlen" maxlength="2" value="30" size="2">
+</form>
+<table id="results">
+</table>
+</center>
+</body>
