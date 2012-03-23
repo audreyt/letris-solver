@@ -23,6 +23,7 @@
       }), 1);
       return false;
     });
+    $("#letters").focus();
     if (/\w+/.test(location.hash)) {
       $("#letters").val(location.hash.toLowerCase().replace(/[^a-z]/g, ""));
       return $("#solve").submit();

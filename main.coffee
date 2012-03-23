@@ -18,6 +18,8 @@ $ ->
     ), 1
     false
 
+  $("#letters").focus()
+
   if /\w+/.test(location.hash)
     $("#letters").val location.hash.toLowerCase().replace(/[^a-z]/g, "")
     $("#solve").submit()
