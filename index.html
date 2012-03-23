@@ -4,6 +4,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="dictionary.js"></script>
 <script src="solver.js"></script>
+<script src="main.js"></script>
 <style>
 body {
     background: #bbb;
@@ -34,34 +35,6 @@ td, #maxlen {
     font-size: 25px;
 }
 </style>
-<script>
-$(function(){
-    var solve = Solver(Dictionary);
-    $('#solve').submit(function(){
-        var tiles = $('#letters').val();
-        tiles = tiles.toLowerCase().replace(/[^a-z]/g, '');
-        if (tiles.length == 0) return;
-        $('#letters').attr('disabled', true);
-        $('#results').empty();
-        setTimeout(function(){
-            var count = 0;
-            solve(tiles, Number($('#maxlen').val()) || 30, function(hit) {
-                count++;
-                $('#results').append(
-                    $('<tr />').append(
-                        $('<th />').text(hit)
-                    ).append(
-                        $('<td />').text(hit.length)
-                    )
-                );
-                return(count < 10);
-            });
-            $('#letters').attr('disabled', false);
-        }, 1);
-        return false;
-    });
-});
-</script>
 </head>
 <body>
 <center>
