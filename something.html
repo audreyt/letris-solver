@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Word Solver</title>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="something.js"></script>
+<script src="solver.js"></script>
+<script src="main.js"></script>
+<style>
+body {
+    background: #bbb;
+    background: -moz-linear-gradient(top, #bbb, #666);
+    background: -ms-linear-gradient(top, #bbb, #666);
+    background: -o-linear-gradient(top, #bbb, #666);
+    background: -webkit-linear-gradient(top, #bbb, #666);
+    background: linear-gradient(top, #bbb, #666);
+    height: 100%;
+}
+body, input, td, th {
+    font-family: "Papyrus", serif;
+    font-size: 30px;
+}
+#submit {
+    font-size: 25px;
+}
+#letters, th {
+    text-transform: uppercase;
+}
+th {
+    text-align: left;
+    padding-right: 20px;
+}
+td, #maxlen {
+    text-align: right;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 25px;
+}
+</style>
+</head>
+<body>
+<center>
+<form id="solve" action="#">
+    <input id="letters" size="30">
+    <input id="submit" type="submit" value="Solve for max. length:">
+    <input id="maxlen" maxlength="2" value="8" size="2">
+</form>
+<table id="results">
+</table>
+</center>
+</body>

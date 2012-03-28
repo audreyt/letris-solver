@@ -12,7 +12,7 @@ $ ->
       solve tiles, Number($("#maxlen").val()) or 30, (hit) ->
         count++
         $("#results").append $("<tr />").append($("<th />").text(hit)).append($("<td />").text(hit.length))
-        count < 10
+        count < 20
 
       $("#letters").attr "disabled", false
     ), 1

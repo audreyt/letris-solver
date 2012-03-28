@@ -17,7 +17,7 @@
         solve(tiles, Number($("#maxlen").val()) || 30, function(hit) {
           count++;
           $("#results").append($("<tr />").append($("<th />").text(hit)).append($("<td />").text(hit.length)));
-          return count < 10;
+          return count < 20;
         });
         return $("#letters").attr("disabled", false);
       }), 1);
