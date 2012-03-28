@@ -2,6 +2,7 @@ solve = Solver(Dictionary)
 
 $ ->
   $("#solve").submit ->
+    maxHits = Number($("#maxhits").val()) or 10
     tiles = $("#letters").val()
     tiles = tiles.toLowerCase().replace(/[^a-z]/g, "")
     return  if tiles.length is 0
@@ -12,9 +13,9 @@ $ ->
       solve tiles, Number($("#maxlen").val()) or 30, (hit) ->
         count++
         $("#results").append $("<tr />").append($("<th />").text(hit)).append($("<td />").text(hit.length))
-        count < 20
+        return(count < maxHits)
 
-      $("#letters").attr "disabled", false
+      $("#letters").attr("disabled", false).removeAttr('disabled')
     ), 1
     false
 

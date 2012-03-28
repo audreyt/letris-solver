@@ -1,19 +1,13 @@
 <html>
 <head>
-<title>Word Solver</title>
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<title>Something Solver</title>
+<script src="zepto.min.js"></script>
 <script src="something.js"></script>
 <script src="solver.js"></script>
 <script src="main.js"></script>
 <style>
-body {
+html, body {
     background: #bbb;
-    background: -moz-linear-gradient(top, #bbb, #666);
-    background: -ms-linear-gradient(top, #bbb, #666);
-    background: -o-linear-gradient(top, #bbb, #666);
-    background: -webkit-linear-gradient(top, #bbb, #666);
-    background: linear-gradient(top, #bbb, #666);
-    height: 100%;
 }
 body, input, td, th {
     font-family: "Papyrus", serif;
@@ -40,8 +34,9 @@ td, #maxlen {
 <center>
 <form id="solve" action="#">
     <input id="letters" size="30">
-    <input id="submit" type="submit" value="Solve for max. length:">
-    <input id="maxlen" maxlength="2" value="8" size="2">
+    <input id="submit" type="submit" value="Solve Something">
+    <input id="maxlen" maxlength="2" value="8" size="2" type="hidden">
+    <input id="maxhits" value="20" type="hidden">
 </form>
 <table id="results">
 </table>
