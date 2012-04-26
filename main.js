@@ -14,21 +14,18 @@
         return;
       }
       $("#letters").attr("disabled", true);
-      if (!$('#solve').hasClass('resume')) {
-        $(".resume").empty();
-      }
       $("#results").empty();
       setTimeout((function() {
         var count;
         count = 0;
         solve(tiles, Number($("#maxlen").val()) || 30, function(hit) {
           count++;
-          $("#results").append($("<tr />").append($("<th />").text(hit)).append($("<td />").append($("<input />", {
+          $("#results").append($("<tr />").append($("<th />").text(hit)).append($("<td />").append($("<input />").attr({
             value: hit.length,
             type: 'button'
           }).click(function() {
             var ch, _i, _len, _ref;
-            $('#results').before($('<center />', {
+            $('#results').before($('<center />').attr({
               "class": 'resume'
             }).text(hit));
             _ref = hit.split('');
@@ -43,7 +40,6 @@
               return $('#results').empty();
             }
           }))));
-          count < 10;
           return count < maxHits;
         });
         return $("#letters").attr("disabled", false).removeAttr('disabled');

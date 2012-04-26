@@ -7,7 +7,6 @@ $ ->
     tiles = tiles.toLowerCase().replace(/[^a-z]/g, "")
     return  if tiles.length is 0
     $("#letters").attr "disabled", true
-    $(".resume").empty() unless $('#solve').hasClass('resume')
     $("#results").empty()
     setTimeout (->
       count = 0
@@ -17,8 +16,8 @@ $ ->
           $("<th />").text(hit)
         ).append(
           $("<td />").append(
-            $("<input />", value: hit.length, type: 'button').click ->
-              $('#results').before $('<center />', class: 'resume').text(hit)
+            $("<input />").attr(value: hit.length, type: 'button').click ->
+              $('#results').before $('<center />').attr(class: 'resume').text(hit)
               for ch in hit.split('')
                 tiles = tiles.replace(new RegExp(ch), '')
               $("#letters").val tiles
@@ -28,7 +27,6 @@ $ ->
                 $('#results').empty()
           )
         )
-        count < 10
         return(count < maxHits)
 
       $("#letters").attr("disabled", false).removeAttr('disabled')
