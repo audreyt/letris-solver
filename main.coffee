@@ -8,6 +8,7 @@ $ ->
     return  if tiles.length is 0
     $("#letters").attr "disabled", true
     $("#results").empty()
+    $(".resume").empty() unless $('#solve').hasClass('resume')
     setTimeout (->
       count = 0
       solve tiles, Number($("#maxlen").val()) or 30, (hit) ->
@@ -22,7 +23,8 @@ $ ->
                 tiles = tiles.replace(new RegExp(ch), '')
               $("#letters").val tiles
               if tiles.length
-                $("#solve").addClass('resume').submit().removeClass('resume')
+                $("#solve").addClass('resume').submit()
+                $('#solve').removeClass('resume')
               else
                 $('#results').empty()
           )

@@ -15,6 +15,9 @@
       }
       $("#letters").attr("disabled", true);
       $("#results").empty();
+      if (!$('#solve').hasClass('resume')) {
+        $(".resume").empty();
+      }
       setTimeout((function() {
         var count;
         count = 0;
@@ -35,7 +38,8 @@
             }
             $("#letters").val(tiles);
             if (tiles.length) {
-              return $("#solve").addClass('resume').submit().removeClass('resume');
+              $("#solve").addClass('resume').submit();
+              return $('#solve').removeClass('resume');
             } else {
               return $('#results').empty();
             }
