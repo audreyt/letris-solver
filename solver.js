@@ -1,39 +1,44 @@
-(function() {
-
-  this.Solver = function(dictionary) {
-    var i, isSubStringOf, maxLen, sorts, word, words, _i, _len;
+(function(){
+  this.Solver = function(dictionary){
+    var words, sorts, i, maxLen, word, isSubStringOf, __i, __len, __ref;
     words = [];
     sorts = [];
-    for (i = 0; i <= 100; i++) {
+    for (i = 0; i <= 100; ++i) {
       words[i] = [];
       sorts[i] = [];
     }
     maxLen = 0;
-    for (_i = 0, _len = dictionary.length; _i < _len; _i++) {
-      word = dictionary[_i];
-      if (maxLen < word.length) maxLen = word.length;
+    for (__i = 0, __len = dictionary.length; __i < __len; ++__i) {
+      word = dictionary[__i];
+      maxLen >= (__ref = word.length) || (maxLen = __ref);
       words[word.length].push(word);
       sorts[word.length].push(word.split('').sort());
     }
-    isSubStringOf = function(sub, sup) {
-      if (!sub.length) return true;
-      if (sup.length < sub.length) return false;
-      if (sub[0] === sup[0]) return isSubStringOf(sub.slice(1), sup.slice(1));
-      return isSubStringOf(sub, sup.slice(1));
+    isSubStringOf = function(sub, sup){
+      switch (false) {
+      case !!sub.length:
+        return true;
+      case !(sup.length < sub.length):
+        return false;
+      case sub[0] !== sup[0]:
+        return isSubStringOf(sub.slice(1), sup.slice(1));
+      default:
+        return isSubStringOf(sub, sup.slice(1));
+      }
     };
-    return function(tiles, len, cb) {
-      var i, idx, letters, sort, _len2, _ref, _ref2;
+    return function(tiles, len, cb){
+      var letters, i, idx, sort, __ref, __len;
       letters = tiles.split('').sort();
-      for (i = _ref = Math.min(maxLen, tiles.length, len); _ref <= 1 ? i <= 1 : i >= 1; _ref <= 1 ? i++ : i--) {
-        _ref2 = sorts[i];
-        for (idx = 0, _len2 = _ref2.length; idx < _len2; idx++) {
-          sort = _ref2[idx];
+      for (i = Math.min(maxLen, tiles.length, len); i >= 1; --i) {
+        for (idx = 0, __len = (__ref = sorts[i]).length; idx < __len; ++idx) {
+          sort = __ref[idx];
           if (isSubStringOf(sort, letters)) {
-            if (cb(words[i][idx]) === false) return;
+            if (!cb(words[i][idx])) {
+              return;
+            }
           }
         }
       }
     };
   };
-
 }).call(this);

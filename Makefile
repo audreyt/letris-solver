@@ -1,9 +1,4 @@
-COFFEE = $(shell find . -name '*.coffee' | sort | perl -pe 's/\.coffee/\.js/')
+all ::
+	env PATH="$$PATH:./node_modules/LiveScript/bin" livescript -c -o . src
 
-all :: $(COFFEE)
-
-.coffee.js:
-	coffee -c $<
-
-.PHONY: all coffee
-.SUFFIXES: .coffee .js
+.PHONY: all
