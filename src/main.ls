@@ -14,9 +14,9 @@ $ ->
                 count++
                 $ \#results .append do
                     $(\<tr/>).append $(\<th/>).text hit .append $(\<td/>).append do
-                        $(\<input/>).attr value: hit.length, type: \button .click ->
+                        $(\<input/>).attr value:hit.length, type:\button .click ->
                             $ \#results .before do
-                                $(\<center/>).attr class: \resume .text hit
+                                $(\<center/>).attr class:\resume .text hit
                             for ch in hit.split ''
                                 tiles .:= replace new RegExp(ch), ''
                             $ \#letters .val tiles
