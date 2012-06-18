@@ -1,8 +1,7 @@
 (function(){
-  var solve;
-  solve = Solver(Dictionary);
   $(function(){
-    var doSubmit;
+    var solve, doSubmit;
+    solve = Solver(Dictionary);
     doSubmit = function(){
       var maxHits, tiles;
       maxHits = Number($('#maxhits').val()) || 10;
@@ -36,9 +35,9 @@
             if (tiles.length) {
               $('#solve').addClass('resume');
               doSubmit();
-              return $('#solve').removeClass('resume');
+              $('#solve').removeClass('resume');
             } else {
-              return $('#results', empty());
+              $('#results').empty();
             }
           }))));
           return count < maxHits;
