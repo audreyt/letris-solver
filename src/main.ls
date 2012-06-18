@@ -1,7 +1,7 @@
 solve = Solver Dictionary
 
 $ ->
-    $ \#solve .submit ->
+    doSubmit = ->
         maxHits = Number($ \#maxhits .val!) || 10
         tiles = $ \#letters .val!toLowerCase!replace /[^a-z]/g ''
         return if tiles.length is 0
@@ -14,17 +14,16 @@ $ ->
                 count++
                 $ \#results .append do
                     $(\<tr/>).append $(\<th/>).text hit .append $(\<td/>).append do
-                        $(\<input/>).attr value: hit.length, type: 'button' .click ->
+                        $(\<input/>).attr value: hit.length, type: \button .click ->
                             $ \#results .before do
-                                $(\<center/>).attr class: 'resume'
-                                             .text hit
+                                $(\<center/>).attr class: \resume .text hit
                             for ch in hit.split ''
-                                tiles .:= replace(new RegExp(ch), '')
+                                tiles .:= replace new RegExp(ch), ''
                             $ \#letters .val tiles
                             if tiles.length
                                 $ \#solve .addClass \resume
-                                          .submit!
-                                          .removeClass \resume
+                                doSubmit!
+                                $ \#solve .removeClass \resume
                             else
                                 $ \#results empty!
                 return count < maxHits
@@ -32,8 +31,9 @@ $ ->
                         .removeAttr \disabled
         , 1
 
+    $ \#solve .submit doSubmit
     $ \#letters .focus!
 
     if /\w+/.test location.hash
         $ \#letters .val location.hash.toLowerCase!replace /[^a-z]/g ''
-        $ \#solve .submit!
+        doSubmit!

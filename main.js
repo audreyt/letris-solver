@@ -2,7 +2,8 @@
   var solve;
   solve = Solver(Dictionary);
   $(function(){
-    $('#solve').submit(function(){
+    var doSubmit;
+    doSubmit = function(){
       var maxHits, tiles;
       maxHits = Number($('#maxhits').val()) || 10;
       tiles = $('#letters').val().toLowerCase().replace(/[^a-z]/g, '');
@@ -33,7 +34,9 @@
             }
             $('#letters').val(tiles);
             if (tiles.length) {
-              return $('#solve').addClass('resume').submit().removeClass('resume');
+              $('#solve').addClass('resume');
+              doSubmit();
+              return $('#solve').removeClass('resume');
             } else {
               return $('#results', empty());
             }
@@ -42,11 +45,12 @@
         });
         return $('#letters').attr('disabled', false).removeAttr('disabled');
       }, 1);
-    });
+    };
+    $('#solve').submit(doSubmit);
     $('#letters').focus();
     if (/\w+/.test(location.hash)) {
       $('#letters').val(location.hash.toLowerCase().replace(/[^a-z]/g, ''));
-      return $('#solve').submit();
+      return doSubmit();
     }
   });
 }).call(this);
