@@ -1,4 +1,5 @@
 (function(){
+  var __replace = ''.replace;
   $(function(){
     var solve, doSubmit;
     solve = Solver(Dictionary);
@@ -29,7 +30,7 @@
             }).text(hit));
             for (__i = 0, __len = (__ref = hit.split('')).length; __i < __len; ++__i) {
               ch = __ref[__i];
-              tiles = tiles.replace(new RegExp(ch), '');
+              tiles = __replace.call(tiles, new RegExp(ch), '');
             }
             $('#letters').val(tiles);
             if (tiles.length) {

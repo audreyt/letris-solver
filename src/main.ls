@@ -20,7 +20,7 @@ doSubmit = ->
                         $ \#results .before do
                             $(\<center/>).attr class:\resume .text hit
                         for ch in hit.split ''
-                            tiles .:= replace new RegExp(ch), ''
+                            tiles -= new RegExp ch
                         $ \#letters .val tiles
                         if tiles.length
                             $ \#solve .addClass \resume
