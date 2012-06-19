@@ -16,8 +16,8 @@ doSubmit = !->
             count++
             $ \#results .append do
                 $(\<tr/>)
-                    .append $(\<th/>).text hit
-                    .append $(\<td/>).append do
+                    .append $(\<th/>)text hit
+                    .append $(\<td/>)append do
                         $(\<input/>)
                             .attr value:hit.length, type:\button
                             .click !->

@@ -1,12 +1,16 @@
 (function(){
   this.Solver = function(dictionary){
-    var words, sorts, i, maxLen, word, isSubStringOf, __i, __len, __ref;
-    words = [];
-    sorts = [];
+    var i, words, sorts, maxLen, word, isSubStringOf, __res, __i, __len, __ref;
+    __res = [];
     for (i = 0; i <= 100; ++i) {
-      words[i] = [];
-      sorts[i] = [];
+      __res.push([]);
     }
+    words = __res;
+    __res = [];
+    for (i = 0; i <= 100; ++i) {
+      __res.push([]);
+    }
+    sorts = __res;
     maxLen = 0;
     for (__i = 0, __len = dictionary.length; __i < __len; ++__i) {
       word = dictionary[__i];
