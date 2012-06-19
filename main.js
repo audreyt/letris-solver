@@ -6,7 +6,7 @@
     doSubmit = function(){
       var maxHits, tiles;
       maxHits = Number($('#maxhits').val()) || 10;
-      tiles = $('#letters').val().toLowerCase().replace(/[^a-z]/g, '');
+      tiles = __replace.call($('#letters').val().toLowerCase(), /[^a-z]/g, '');
       if (tiles.length === 0) {
         return;
       }
@@ -15,7 +15,7 @@
       if (!$('#solve').hasClass('resume')) {
         $('.resume').empty();
       }
-      return setTimeout(function(){
+      setTimeout(function(){
         var count;
         count = 0;
         solve(tiles, Number($('#maxlen').val()) || 30, function(hit){
@@ -49,7 +49,7 @@
     $('#solve').submit(doSubmit);
     $('#letters').focus();
     if (/\w+/.test(location.hash)) {
-      $('#letters').val(location.hash.toLowerCase().replace(/[^a-z]/g, ''));
+      $('#letters').val(__replace.call(location.hash.toLowerCase(), /[^a-z]/g, ''));
       return doSubmit();
     }
   });
