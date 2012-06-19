@@ -28,7 +28,7 @@ doSubmit = !->
                                     .attr class:\resume
                                     .text hit
                             for ch in hit.split ''
-                                tiles -= new RegExp ch
+                                tiles -= //#ch//
                             $ \#letters .val tiles
                             if tiles.length
                                 $ \#solve .addClass \resume

@@ -32,7 +32,7 @@
             }).text(hit));
             for (__i = 0, __len = (__ref = hit.split('')).length; __i < __len; ++__i) {
               ch = __ref[__i];
-              tiles = __replace.call(tiles, new RegExp(ch), '');
+              tiles = __replace.call(tiles, RegExp(ch + ''), '');
             }
             $('#letters').val(tiles);
             if (tiles.length) {
