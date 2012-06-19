@@ -7,7 +7,7 @@
       var maxHits, tiles;
       maxHits = Number($('#maxhits').val()) || 10;
       tiles = __replace.call($('#letters').val().toLowerCase(), /[^a-z]/g, '');
-      if (tiles.length === 0) {
+      if (!tiles.length) {
         return;
       }
       $('#letters').attr('disabled', true);
