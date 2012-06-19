@@ -22,7 +22,7 @@
       switch (false) {
       case !!sub.length:
         return true;
-      case !(sup.length < sub.length):
+      case !(sub.length > sup.length):
         return false;
       case sub[0] !== sup[0]:
         return isSubStringOf(sub.slice(1), sup.slice(1));

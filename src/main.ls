@@ -5,7 +5,7 @@ solve = Solver Dictionary
 doSubmit = !->
     maxHits = Number($ \#maxhits .val!) || 10
     tiles = $ \#letters .val!toLowerCase! - /[^a-z]/g
-    return if tiles.length is 0
+    return unless tiles.length
     $ \#letters .attr \disabled true
     $ \#results .empty!
     $ \.resume .empty! unless $ \#solve .hasClass \resume

@@ -10,7 +10,7 @@
 
     isSubStringOf = (sub, sup) ->
         | !sub.length               => true
-        | sup.length < sub.length   => false
+        | sub.length > sup.length   => false
         | sub.0 is sup.0            => sub.slice(1) `isSubStringOf` sup.slice(1)
         | otherwise                 => sub `isSubStringOf` sup.slice(1)
 
