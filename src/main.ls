@@ -6,38 +6,39 @@ doSubmit = !->
     maxHits = Number($ \#maxhits .val!) || 10
     tiles = $ \#letters .val!toLowerCase! - /[^a-z]/g
     return unless tiles.length
-    $ \#letters .attr \disabled true
+
+    $ \#letters .attr {+disabled}
     $ \#results .empty!
     $ \.resume .empty! unless $ \#solve .hasClass \resume
-    setTimeout ->
-        count = 0
-        do
-            hit <- solve tiles, Number($ \#maxlen .val!) || 30
-            count++
-            $ \#results .append do
-                $(\<tr/>)
-                    .append $(\<th/>)text hit
-                    .append $(\<td/>)append do
-                        $(\<input/>)
-                            .attr value:hit.length, type:\button
-                            .click !->
-                                $ \#results .before do
-                                    $(\<center/>)
-                                        .attr class:\resume
-                                        .text hit
-                                for ch in hit.split ''
-                                    tiles -= new RegExp ch
-                                $ \#letters .val tiles
-                                if tiles.length
-                                    $ \#solve .addClass \resume
-                                    doSubmit!
-                                    $ \#solve .removeClass \resume
-                                else
-                                    $ \#results .empty!
-            return count < maxHits
-        $ \#letters .attr \disabled false
-                    .removeAttr \disabled
-    , 1
+
+    <- (`setTimeout` 1)
+    count = 0
+    do
+        hit <- solve tiles, Number($ \#maxlen .val!) || 30
+        count++
+        $ \#results .append do
+            $(\<tr/>)
+                .append $(\<th/>)text hit
+                .append $(\<td/>)append do
+                    $(\<input/>)
+                        .attr value:hit.length, type:\button
+                        .click !->
+                            $ \#results .before do
+                                $(\<center/>)
+                                    .attr class:\resume
+                                    .text hit
+                            for ch in hit.split ''
+                                tiles -= new RegExp ch
+                            $ \#letters .val tiles
+                            if tiles.length
+                                $ \#solve .addClass \resume
+                                doSubmit!
+                                $ \#solve .removeClass \resume
+                            else
+                                $ \#results .empty!
+        return count < maxHits
+    $ \#letters .attr {-disabled}
+                .removeAttr \disabled
 
 $ \#solve .submit doSubmit
 $ \#letters .focus!

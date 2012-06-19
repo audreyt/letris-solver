@@ -10,12 +10,14 @@
       if (!tiles.length) {
         return;
       }
-      $('#letters').attr('disabled', true);
+      $('#letters').attr({
+        disabled: true
+      });
       $('#results').empty();
       if (!$('#solve').hasClass('resume')) {
         $('.resume').empty();
       }
-      setTimeout(function(){
+      __flip(setTimeout)(1, function(){
         var count;
         count = 0;
         solve(tiles, Number($('#maxlen').val()) || 30, function(hit){
@@ -43,8 +45,10 @@
           }))));
           return count < maxHits;
         });
-        return $('#letters').attr('disabled', false).removeAttr('disabled');
-      }, 1);
+        return $('#letters').attr({
+          disabled: false
+        }).removeAttr('disabled');
+      });
     };
     $('#solve').submit(doSubmit);
     $('#letters').focus();
@@ -53,4 +57,16 @@
       return doSubmit();
     }
   });
+  function __flip(f){
+    return __curry(function (x, y) {
+      return f(y, x);
+    });
+  }
+  function __curry(f, args){
+    return f.length > 1 ? function(){
+      var params = args ? args.concat() : [];
+      return params.push.apply(params, arguments) < f.length && arguments.length ?
+        __curry.call(this, f, params) : f.apply(this, params);
+    } : f;
+  }
 }).call(this);
